@@ -1,5 +1,11 @@
 {
     "D1-RELS": "not available",
+    "RPI4B-4GB": "not available",
+    "RPI4B-2GB": "not available",
+    "RPI4B-8GB": "not available",
     "RPI-PICO": "available",
+    "RPI4B-1GB": "not available",
+    "RPI4B-2GB_BC": "not available",
+    "RPI4-2-Element-b_BC": "not available",
     "RPI-PICO-W": "not available"
 }

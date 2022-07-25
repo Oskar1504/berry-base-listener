@@ -85,6 +85,7 @@ module.exports = {
             "RPI": "Raspberry Pi",
             "RELS": "Relais",
             "BP": "B Plus",
+            "BC": "BerryBase Club exclusive",
         }
         sku.split("-").forEach(teil => {
             Object.keys(abk).forEach(ab =>{
