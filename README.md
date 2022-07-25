@@ -52,3 +52,7 @@ there is already a running version. If u want access hit me up on discord: Oskar
 - twitter bot implementation
 - telegram bot implementation | added
 - /api/addProduct query sanitatsion
+- email sending script
+- webhook notifictaion sender 
+    - just axios to different urls 
+
