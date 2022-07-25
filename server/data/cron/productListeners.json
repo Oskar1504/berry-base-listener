@@ -1,0 +1,8 @@
+{
+    "telegram":{
+        "D1-RELS": ["T_CID_OSKAR"]
+    },
+    "discord":{
+        "D1-RELS": ["DC_WH_KEY_OSKAR"]
+    }
+}
