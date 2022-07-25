@@ -15,7 +15,8 @@
     "cron": "^2.1.0",
     "dotenv": "^11.0.0",
     "express": "^4.17.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "mainapiconnector": "https://github.com/Oskar1504/ope-main-api-connector.git"
   },
   "nodemonConfig": {
     "ignore": [
