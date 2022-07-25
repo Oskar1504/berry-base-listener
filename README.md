@@ -3,6 +3,8 @@ This is a small Cron application which checks every 30 minutes if specific produ
 
 A small express API also running where you can request and add more products to watchlist.
 
+there is already a running version. If u want access hit me up on discord: Oskar#2843
+
 ## Routes
 ```
 <HOST_URL>/api
@@ -35,6 +37,15 @@ A small express API also running where you can request and add more products to 
 *Self host*
 - to get notified via Discord webhook or telegram u need to add the Weebhook/chat id token to the .env
 - after that u need to edit ./server/data/cron/productListeners.json and add which token listens to which Product sku
+
+## how to use
+- clone repo
+- create .env using .env-template
+- remove mainapiconnector from package.json
+    - only used in personal enviroment to connect to main api gateway
+- edit ./server/data/cron/watchedProducts.json to specify which product skus to listen to
+- npm i
+- npm run start
 
 ## Todo
 - discord webhook implementation | added
