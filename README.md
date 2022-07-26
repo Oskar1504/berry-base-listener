@@ -14,10 +14,14 @@ there is already a running version. If u want access hit me up on discord: Oskar
     "/": "info about this router",
     "/getProductList": "receive all watchedProducts",
     "/getProduct?product=RPI-PICO-W": "receive stock status off specfific product SKU",
-    "/addProductToList?product=RPI-PICO": "add Product sku to watchedProducts",
+    "/addProductToList?product=RPI-PICO&name=RaspberryPi&url=https://www.berrybase.de": "add Product sku to watchedProducts",
 },
 "post":{}
 ```
+- addProductToList has 3 requeired query params
+    - product = product sku
+    - name = product name which is used in notification messages
+    - url = berrybase shop url used in notification messsages
 ## Workflow
 - npm run start = node server/server.js
 - server.js starts an express.js https server with the api router

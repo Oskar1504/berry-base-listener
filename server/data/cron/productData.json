@@ -1,0 +1,47 @@
+{
+    "RPI4-2-Element-b_BC": {
+        "sku": "RPI4-2-Element-b_BC",
+        "name": "Raspberry Pi 4 B 2GB BerryBase Club exclusive",
+        "url": "https://www.berrybase.de/raspberry-pi-4-computer-modell-b-2gb-elementary-kit-clubartikel"
+    },
+    "D1-RELS": {
+        "sku": "D1-RELS",
+        "name": " D1 Relais ",
+        "url": "https://www.berrybase.de/relais-shield-f-252-r-d1-mini"
+    },
+    "RPI4B-4GB": {
+        "sku": "RPI4B-4GB",
+        "name": "Raspberry Pi 4B 4GB ",
+        "url": "https://www.berrybase.de/raspberry-pi-4-computer-modell-b-4gb-ram"
+    },
+    "RPI4B-2GB": {
+        "sku": "RPI4B-2GB",
+        "name": "Raspberry Pi 4B 2GB ",
+        "url": "https://www.berrybase.de/raspberry-pi-4-computer-modell-b-2gb-ram"
+    },
+    "RPI4B-8GB": {
+        "sku": "RPI4B-8GB",
+        "name": "Raspberry Pi 4B 8GB ",
+        "url": "https://www.berrybase.de/raspberry-pi-4-computer-modell-b-8gb-ram"
+    },
+    "RPI-PICO": {
+        "sku": "RPI-PICO",
+        "name": "Raspberry Pi PICO ",
+        "url": "https://www.berrybase.de"
+    },
+    "RPI4B-1GB": {
+        "sku": "RPI4B-1GB",
+        "name": "Raspberry Pi 4B 1GB ",
+        "url": "https://www.berrybase.de/raspberry-pi-4-computer-modell-b-1gb-ram"
+    },
+    "RPI4B-2GB_BC": {
+        "sku": "RPI4B-2GB_BC",
+        "name": "Raspberry Pi 4B BerryBase Club exclusive 2GB_ ",
+        "url": "https://www.berrybase.de/raspberry-pi-4-computer-modell-b-2gb-ram-clubartikel"
+    },
+    "RPI-PICO-W": {
+        "sku": "RPI-PICO-W",
+        "name": "Raspberry Pi PICO W ",
+        "url": "https://www.berrybase.de/raspberry-pi-pico-w-rp2040-43-wlan-mikrocontroller-board"
+    }
+}

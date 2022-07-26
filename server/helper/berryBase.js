@@ -1,12 +1,14 @@
 require('dotenv').config()
 const axios = require("axios")
 const fs = require("fs")
+let HTMLParser = require('node-html-parser');
 
 const telegramBot = require("../helper/telegramBot")
 const discordWebhook = require("../helper/discordWebhook")
 
 let watchedProducts = require("../data/cron/watchedProducts.json");
 let productListeners = require("../data/cron/productListeners.json");
+let productDataList = require("../data/cron/productData.json");
 
 module.exports = {
     execute: async function (){
@@ -33,6 +35,7 @@ module.exports = {
 
             watchedProducts = newAvail
             fs.writeFileSync("./server/data/cron/watchedProducts.json", JSON.stringify(watchedProducts, null, 4))
+            fs.writeFileSync("./server/data/cron/productData.json", JSON.stringify(productDataList, null, 4))
             
         })
         .catch(e => {
@@ -62,10 +65,14 @@ module.exports = {
     },
     checkAvailable: function(templates){
         return Object.fromEntries(Object.entries(templates).map(keyVal => {
-            if(keyVal[1].includes('data-add-article="true"')){
-                keyVal[1] = "available"
-            }else{
+
+            let root = HTMLParser.parse(keyVal[1])
+            let as = [...root.querySelectorAll("a.not--available")]
+            if(as.length >= 1){
                 keyVal[1] = "not available"
+                productDataList[keyVal[0]].url = as[0].rawAttributes.href
+            }else{
+                keyVal[1] = "available"
             }
             return keyVal
         }))
@@ -121,8 +128,10 @@ module.exports = {
         return o
     },
     generateUrl: function(sku){
-        // TODO plan to generate url from sku but its to heavy
-        // TODO when add sku to watchlist also url needed and name
-        return "https://berrybase.de"
+        if(productDataList[sku]){
+            return productDataList[sku].url
+        }else{
+            return "https://www.berrybase.de"
+        }
     }
 }

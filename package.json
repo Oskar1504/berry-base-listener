@@ -4,6 +4,7 @@
   "description": "A template express js app to work in my local network",
   "main": "server/server.js",
   "scripts": {
+    "test": "node server/testCron.js",
     "dev": "nodemon server/server.js",
     "start": "node server/server.js"
   },
@@ -15,8 +16,9 @@
     "cron": "^2.1.0",
     "dotenv": "^11.0.0",
     "express": "^4.17.2",
-    "nodemon": "^2.0.15",
-    "mainapiconnector": "https://github.com/Oskar1504/ope-main-api-connector.git"
+    "mainapiconnector": "https://github.com/Oskar1504/ope-main-api-connector.git",
+    "node-html-parser": "^5.3.3",
+    "nodemon": "^2.0.15"
   },
   "nodemonConfig": {
     "ignore": [
