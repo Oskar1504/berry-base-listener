@@ -42,9 +42,14 @@ module.exports = {
     checkProductStatusChanges: function(productData){
         Object.entries(watchedProducts).forEach(keyVal => {
             if(keyVal[1] != productData[keyVal[0]] && keyVal[1] != "not scanned"){
-                let message = `${keyVal[0]} changed status from "${keyVal[1]}" to "${productData[keyVal[0]]}"`
-                console.log(message)
-                this.productStatusChanged(keyVal, message)
+                console.log(`${keyVal[0]} changed status from "${keyVal[1]}" to "${productData[keyVal[0]]}"`)
+                let product = {
+                    sku: keyVal[0],
+                    oldStatus: keyVal[1],
+                    newStatus: productData[keyVal[0]],
+                    url: this.generateUrl(keyVal[0])
+                }
+                this.productStatusChanged(product)
             }
         })
     },
@@ -65,17 +70,28 @@ module.exports = {
             return keyVal
         }))
     },
-    productStatusChanged: function(productKeyVal, message = "Error empty message"){
-        let parsedSku = `\n\nParsed SKU try:\n ${productKeyVal[0]} ~ ${this.parseSku(productKeyVal[0])}`
-
-        productListeners.telegram[productKeyVal[0]].forEach(chat_id => {
-            let withHeader = "*Berry Base Product listener* \n\n" + message + parsedSku
+    productStatusChanged: function(product){
+        let parsedSku = `\n\n${product.sku} ~ ${this.parseSku(product.sku)}`
+        let message = `${product.sku} changed from "${product.oldStatus}" to "${product.newStatus}"` 
+        
+        productListeners.telegram[product.sku].forEach(chat_id => {
+            let withHeader = "*Berry Base Product listener* \n\n" 
+                + message
+                + parsedSku
             telegramBot.sendMessage(chat_id, withHeader)
         })
 
-        productListeners.discord[productKeyVal[0]].forEach(chat_id => {
-            let withHeader = "**Berry Base Product listener** \n\n" + message + parsedSku
-            discordWebhook.sendMessage(chat_id, withHeader)
+        productListeners.discord[product.sku].forEach(chat_id => {
+            discordWebhook.sendEmbed(chat_id, message, product.url, [
+                {
+                    name: "Status old",
+                    value: product.oldStatus
+                },
+                {
+                    name: "Status new",
+                    value: product.newStatus
+                }
+            ])
         })
     },
     parseSku: function(sku){
@@ -103,5 +119,10 @@ module.exports = {
         })
         o = o.replace(/\s\s+/g, ' ')
         return o
+    },
+    generateUrl: function(sku){
+        // TODO plan to generate url from sku but its to heavy
+        // TODO when add sku to watchlist also url needed and name
+        return "https://berrybase.de"
     }
 }

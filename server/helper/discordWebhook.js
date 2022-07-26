@@ -6,30 +6,49 @@ module.exports = {
     execute() {
         console.log("telegram would send a message")
     },
-    sendNewVideoMessage(webhook_id, video){
-        //nivarias a channel on youtube uses || but this is interpreted by discord with sensored area in message
-        let title = video.title.replace(/\|\|/g,"|")
-
-        // possible cotent https://discord.com/developers/docs/resources/channel#create-message
-        let message = `**New Video by ${video.channel}**\n${title} \n\n https://youtube.com/watch?v=${video.videoId}`
-        
-        this.sendMessage(webhook_id, message)
-    },
     sendMessage(webhook_id, message){
+        // possible cotent https://discord.com/developers/docs/resources/channel#create-message
+        let messageObj = JSON.stringify({
+            content: message
+        })
+        
+        this.sendRequest(webhook_id, messageObj)
+    },
+    sendEmbed(webhook_id, message, url, fields = [], color = 0xcd3c65){
+        this.sendRequest(webhook_id, JSON.stringify({
+            "content": "",
+            "embeds": [
+                {
+                    "type": "rich",
+                    "title": `Berry Base listener`,
+                    "description": `${message}`,
+                    "color": 0xcd3c65,
+                    "fields": fields.map(f => {
+                        return {
+                            name: f.name,
+                            value: f.value,
+                            inline: true
+                        }
+                    }),
+                    "timestamp": new Date().toISOString(),
+                    "footer": {
+                        "text": `berry-base-listener`
+                    },
+                    "url":url
+                }
+            ]
+        }))
+    },
+    sendRequest(webhook_id, messageObj){
         
         if(process.env.DEV_MODE != "PROD" && process.env.DEV_MODE != "DEV_SENDMESSAGE"){
             console.log(`[DISCORD]: No message send due to DEV_MODE != PROD`)
             return
         }
-        
-        // possible cotent https://discord.com/developers/docs/resources/channel#create-message
-        let msg = JSON.stringify({
-            content: message
-        })
 
         //due to the fact sometimes some keys arent given i catch this error
         if(process.env[webhook_id]){  
-            axios.post(`https://discord.com/api/webhooks/${process.env[webhook_id]}`, msg, {
+            axios.post(`https://discord.com/api/webhooks/${process.env[webhook_id]}`, messageObj, {
                 headers: {
                 'Content-Type': 'application/json'
                 }
