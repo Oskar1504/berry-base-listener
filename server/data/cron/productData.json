@@ -43,5 +43,10 @@
         "sku": "RPI-PICO-W",
         "name": "Raspberry Pi PICO W ",
         "url": "https://www.berrybase.de/raspberry-pi-pico-w-rp2040-43-wlan-mikrocontroller-board"
+    },
+    "JUMPERBOX": {
+        "sku": "JUMPERBOX",
+        "name": "jumperbox",
+        "url": "https://www.berrybase.de/jumper-box/set-mit-140-jumpern-in-14-l-228-ngen-f-252-r-breadboards"
     }
 }

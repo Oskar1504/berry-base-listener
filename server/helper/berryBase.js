@@ -6,6 +6,9 @@ let HTMLParser = require('node-html-parser');
 const telegramBot = require("../helper/telegramBot")
 const discordWebhook = require("../helper/discordWebhook")
 
+const WATCHED_PRODUCTS_FILE = "./server/data/cron/watchedProducts.json"
+const PRODUCT_DATA_FILE = "./server/data/cron/productData.json"
+
 let watchedProducts = require("../data/cron/watchedProducts.json");
 let productListeners = require("../data/cron/productListeners.json");
 let productDataList = require("../data/cron/productData.json");
@@ -57,6 +60,7 @@ module.exports = {
         })
     },
     generateParams: function(){
+        watchedProducts = JSON.parse(fs.readFileSync(WATCHED_PRODUCTS_FILE))
         let o = ""
         Object.keys(watchedProducts).forEach(product =>{
             o += `numbers[]=${product}&`
@@ -128,6 +132,7 @@ module.exports = {
         return o
     },
     generateUrl: function(sku){
+        productDataList = JSON.parse(fs.readFileSync(PRODUCT_DATA_FILE))
         if(productDataList[sku]){
             return productDataList[sku].url
         }else{

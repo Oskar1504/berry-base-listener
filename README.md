@@ -31,7 +31,7 @@ there is already a running version. If u want access hit me up on discord: Oskar
         - when "warenkorb" button availalbe it "knows" it is available otherwise it is not available
     - the parsed reqest gets sotred into watchedproducts.json
     - also new productData gets compared with old data and if status changed productListeners gets notified via DiscordWebhook and/or Telegram Bot chat
-- the /api router (express.js) now reads/write data to watchedProducts.json
+- the /api router (express.js) reads/write data to watchedProducts.json
 
 ## Discord/Telegram notifier
 *Get added to running script*
@@ -55,7 +55,7 @@ there is already a running version. If u want access hit me up on discord: Oskar
 - discord webhook implementation | added
 - twitter bot implementation
 - telegram bot implementation | added
-- /api/addProduct query sanitatsion
+- /api/addProduct query sanitatsion | added
 - email sending script
 - webhook notifictaion sender 
     - just axios to different urls 
