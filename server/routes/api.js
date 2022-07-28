@@ -1,10 +1,10 @@
 const express = require('express')
 const fs = require('fs');
+const berryBase = require('../helper/berryBase');
 const { sanitizeRequest } = require('../helper/requestSanitizer');
 
 const router = express.Router();
 
-const requestSanitizer = require("../helper/requestSanitizer")
 
 const DATA_FILE = "./server/data/cron/watchedProducts.json"
 const PRODUCT_DATA_FILE = "./server/data/cron/productData.json"
@@ -53,7 +53,7 @@ router.get('/getProductList',async (req, res, next) => {
 
 router.get('/getProduct',async (req, res, next) => {
     try{
-        let query = requestSanitizer.sanitizeRequest(req, {
+        let query = sanitizeRequest(req, {
             query:[{
                 key: "product",
                 required: true,
@@ -75,7 +75,7 @@ router.get('/getProduct',async (req, res, next) => {
 
 router.get('/addProductToList',async (req, res, next) => {
     try{
-        let query = requestSanitizer.sanitizeRequest(req, {
+        let query = sanitizeRequest(req, {
             query:[
                 {
                     key: "product",
@@ -114,6 +114,19 @@ router.get('/addProductToList',async (req, res, next) => {
 
         res.json({
             data: `Added ${query.product} to watchedProducts list. Will be scanned in the next 30min`,
+            status:200
+        })
+    }catch(e){
+        console.log(e.toString())
+        res.json({message: e.toString(), status:500})
+    }
+});
+
+router.get('/forceScan',async (req, res, next) => {
+    try{
+        berryBase.getProductData()
+        res.json({
+            data: "forced scan",
             status:200
         })
     }catch(e){
