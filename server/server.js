@@ -3,6 +3,7 @@ var CronJob = require('cron').CronJob;
 const fs = require('fs');
 const express = require('express')
 
+const MainAPiConnector = require("mainapiconnector")
 const berryBase = require("./helper/berryBase")
 
 // extend console.log to write in log file

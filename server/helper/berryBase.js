@@ -8,12 +8,12 @@ const discordWebhook = require("../helper/discordWebhook")
 
 const WATCHED_PRODUCTS_FILE = "./server/data/cron/watchedProducts.json"
 const PRODUCT_DATA_FILE = "./server/data/cron/productData.json"
-
-let watchedProducts = require("../data/cron/watchedProducts.json");
-let productListeners = require("../data/cron/productListeners.json");
-let productDataList = require("../data/cron/productData.json");
+const PRODUCT_LISTENERS_FILE = "./server/data/cron/productData.json"
 
 module.exports = {
+    watchedProducts: function(){return JSON.parse(fs.readFileSync(WATCHED_PRODUCTS_FILE))},
+    productListeners: function(){return JSON.parse(fs.readFileSync(PRODUCT_LISTENERS_FILE))},
+    productDataList: function(){return JSON.parse(fs.readFileSync(PRODUCT_DATA_FILE))},
     execute: async function (){
         console.group("[BerryBase]: execute started")
         if(process.env.DEV_MODE == "PROD"){
@@ -22,13 +22,15 @@ module.exports = {
         }else{
             console.log("no fetching due wron dev mode")
             console.log("Using test data to tet send modules")
-            let newAvail = JSON.parse(JSON.stringify(watchedProducts))
+            let newAvail = JSON.parse(JSON.stringify(this.watchedProducts()))
             newAvail["D1-RELS"] = "not scanned"
             this.checkProductStatusChanges(newAvail)
         }
         console.groupEnd()
     },
     getProductData: async function() {
+        let watchedProducts = this.watchedProducts()
+        let productDataList = this.productDataList()
         await axios.get(`https://www.berrybase.de/PixupExcludeItems/listingReload?${this.generateParams()}`)
         .then(res => {
             console.log(`[BerryBase]: listingReload call status ${res.data.success}`)
@@ -46,6 +48,7 @@ module.exports = {
         })
     },
     checkProductStatusChanges: function(productData){
+        let watchedProducts = this.watchedProducts()
         Object.entries(watchedProducts).forEach(keyVal => {
             if(keyVal[1] != productData[keyVal[0]] && keyVal[1] != "not scanned"){
                 console.log(`${keyVal[0]} changed status from "${keyVal[1]}" to "${productData[keyVal[0]]}"`)
@@ -60,7 +63,7 @@ module.exports = {
         })
     },
     generateParams: function(){
-        watchedProducts = JSON.parse(fs.readFileSync(WATCHED_PRODUCTS_FILE))
+        let watchedProducts = this.watchedProducts()
         let o = ""
         Object.keys(watchedProducts).forEach(product =>{
             o += `numbers[]=${product}&`
@@ -68,6 +71,7 @@ module.exports = {
         return o
     },
     checkAvailable: function(templates){
+        let productDataList = this.productDataList()
         return Object.fromEntries(Object.entries(templates).map(keyVal => {
 
             let root = HTMLParser.parse(keyVal[1])
@@ -82,6 +86,7 @@ module.exports = {
         }))
     },
     productStatusChanged: function(product){
+        let productListeners = this.productListeners()
         let parsedSku = `\n\n${product.sku} ~ ${this.parseSku(product.sku)}`
         let message = `${product.sku} changed from "${product.oldStatus}" to "${product.newStatus}"` 
         
@@ -132,7 +137,7 @@ module.exports = {
         return o
     },
     generateUrl: function(sku){
-        productDataList = JSON.parse(fs.readFileSync(PRODUCT_DATA_FILE))
+        let productDataList = this.productDataList()
         if(productDataList[sku]){
             return productDataList[sku].url
         }else{
