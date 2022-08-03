@@ -8,7 +8,7 @@ const discordWebhook = require("../helper/discordWebhook")
 
 const WATCHED_PRODUCTS_FILE = "./server/data/cron/watchedProducts.json"
 const PRODUCT_DATA_FILE = "./server/data/cron/productData.json"
-const PRODUCT_LISTENERS_FILE = "./server/data/cron/productData.json"
+const PRODUCT_LISTENERS_FILE = "./server/data/cron/productListeners.json"
 
 module.exports = {
     watchedProducts: function(){return JSON.parse(fs.readFileSync(WATCHED_PRODUCTS_FILE))},
