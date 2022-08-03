@@ -48,5 +48,10 @@
         "sku": "JUMPERBOX",
         "name": "jumperbox",
         "url": "https://www.berrybase.de/jumper-box/set-mit-140-jumpern-in-14-l-228-ngen-f-252-r-breadboards"
+    },
+    "RPI4-2-Element-b": {
+        "sku": "RPI4-2-Element-b",
+        "name": "RPI4 b 2gb",
+        "url": "https://berrybase.de"
     }
 }

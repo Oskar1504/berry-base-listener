@@ -8,6 +8,7 @@ const router = express.Router();
 
 const DATA_FILE = "./server/data/cron/watchedProducts.json"
 const PRODUCT_DATA_FILE = "./server/data/cron/productData.json"
+const PRODUCT_LISTENERS_FILE = "./server/data/cron/productListeners.json"
 
 // used when compiling the routes in the MainAPiConnector
 router["custom"] = {}
@@ -101,6 +102,11 @@ router.get('/addProductToList',async (req, res, next) => {
 
         let productList = JSON.parse(fs.readFileSync(DATA_FILE))
         let productDataList = JSON.parse(fs.readFileSync(PRODUCT_DATA_FILE))
+        let productListeners = JSON.parse(fs.readFileSync(PRODUCT_LISTENERS_FILE))
+
+        Object.values(productListeners).forEach(application => {
+            application[query.product] = []
+        })
 
         productList[query.product] = "not scanned"
         productDataList[query.product] = {
@@ -110,7 +116,8 @@ router.get('/addProductToList',async (req, res, next) => {
         }
 
         fs.writeFileSync(DATA_FILE, JSON.stringify(productList, null, 4))
-        fs.writeFileSync(PRODUCT_DATA_FILE, JSON.stringify(productDataList, null, 4))
+        fs.writeFileSync(DATA_FILE, JSON.stringify(productList, null, 4))
+        fs.writeFileSync(PRODUCT_LISTENERS_FILE, JSON.stringify(productListeners, null, 4))
 
         res.json({
             data: `Added ${query.product} to watchedProducts list. Will be scanned in the next 30min`,

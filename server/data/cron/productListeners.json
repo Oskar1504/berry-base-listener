@@ -1,24 +1,66 @@
 {
-    "telegram":{
-        "D1-RELS": ["T_CID_OSKAR"],
-        "RPI4B-4GB": ["T_CID_OSKAR"],
-        "RPI4B-2GB": ["T_CID_OSKAR"],
-        "RPI4B-8GB": ["T_CID_OSKAR"],
-        "RPI-PICO": ["T_CID_OSKAR"],
-        "RPI4B-1GB": ["T_CID_OSKAR"],
-        "RPI4B-2GB_BC": ["T_CID_OSKAR"],
-        "RPI4-2-Element-b_BC": ["T_CID_OSKAR"],
-        "RPI-PICO-W": ["T_CID_OSKAR"]
+    "telegram": {
+        "D1-RELS": [
+            "T_CID_OSKAR"
+        ],
+        "RPI4B-4GB": [
+            "T_CID_OSKAR"
+        ],
+        "RPI4B-2GB": [
+            "T_CID_OSKAR"
+        ],
+        "RPI4B-8GB": [
+            "T_CID_OSKAR"
+        ],
+        "RPI-PICO": [
+            "T_CID_OSKAR"
+        ],
+        "RPI4B-1GB": [
+            "T_CID_OSKAR"
+        ],
+        "RPI4B-2GB_BC": [
+            "T_CID_OSKAR"
+        ],
+        "RPI4-2-Element-b_BC": [
+            "T_CID_OSKAR"
+        ],
+        "RPI-PICO-W": [
+            "T_CID_OSKAR"
+        ],
+        "RPI4-2-Element-b": [
+            "T_CID_OSKAR"
+        ]
     },
-    "discord":{
-        "D1-RELS": ["DC_WH_KEY_OSKAR"],
-        "RPI4B-4GB": ["DC_WH_KEY_OSKAR"],
-        "RPI4B-2GB": ["DC_WH_KEY_OSKAR"],
-        "RPI4B-8GB": ["DC_WH_KEY_OSKAR"],
-        "RPI-PICO": ["DC_WH_KEY_OSKAR"],
-        "RPI4B-1GB": ["DC_WH_KEY_OSKAR"],
-        "RPI4B-2GB_BC": ["DC_WH_KEY_OSKAR"],
-        "RPI4-2-Element-b_BC": ["DC_WH_KEY_OSKAR"],
-        "RPI-PICO-W": ["DC_WH_KEY_OSKAR"]
+    "discord": {
+        "D1-RELS": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI4B-4GB": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI4B-2GB": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI4B-8GB": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI-PICO": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI4B-1GB": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI4B-2GB_BC": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI4-2-Element-b_BC": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI-PICO-W": [
+            "DC_WH_KEY_OSKAR"
+        ],
+        "RPI4-2-Element-b": [
+            "DC_WH_KEY_OSKAR"
+        ]
     }
 }
